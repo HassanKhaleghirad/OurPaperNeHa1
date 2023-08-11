@@ -1,0 +1,9 @@
+be/cylab/simplechain/SimpleChain.class
+be/cylab/simplechain/RMIBasedP2P.class
+be/cylab/simplechain/P2PInterface.class
+be/cylab/simplechain/ChainLink.class
+be/cylab/simplechain/Block.class
+be/cylab/simplechain/RemoteHandler.class
+be/cylab/simplechain/Monitor.class
+be/cylab/simplechain/RemoteInterface.class
+be/cylab/simplechain/Main.class
