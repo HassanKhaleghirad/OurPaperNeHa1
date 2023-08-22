@@ -70,7 +70,11 @@ public class EncryptionKeyPair {
         pub = new EncryptionPublicKey(is);
         priv = new EncryptionPrivateKey(is);
     }
-    
+
+    public EncryptionKeyPair() {
+
+    }
+
     /**
      * Returns the private key
      * @return the private key

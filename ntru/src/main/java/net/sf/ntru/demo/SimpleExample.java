@@ -52,6 +52,7 @@ public class SimpleExample {
 
         // create an encryption key pair
         EncryptionKeyPair kp = ntru.generateKeyPair();
+        System.out.println(kp.toString());
 
         String msg = "The quick brown fox";
         System.out.println("  Before encryption: " + msg);
