@@ -1,5 +1,7 @@
 package net.sf.ntru.demo;
 
+import net.sf.ntru.SikeKem.sike.crypto.Sike;
+import net.sf.ntru.SikeKem.sike.model.EncryptedMessage;
 import net.sf.ntru.encrypt.EncryptionKeyPair;
 import net.sf.ntru.encrypt.EncryptionParameters;
 import net.sf.ntru.encrypt.NtruEncrypt;
@@ -8,9 +10,12 @@ import javax.crypto.Cipher;
 
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.security.PrivateKey;
 import java.util.Arrays;
 
 public class Node {
+
+
 
      String aesMode = "AES/CBC/PKCS5Padding";
     int aesLength = 128;
@@ -36,6 +41,8 @@ public class Node {
 
         return plainText;
     }
+
+
 
 
 }
