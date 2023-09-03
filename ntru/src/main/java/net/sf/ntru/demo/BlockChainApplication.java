@@ -8,28 +8,32 @@ import net.sf.ntru.blockchian.Block;
 import net.sf.ntru.blockchian.BlockChain;
 import net.sf.ntru.blockchian.Constants_Program;
 import net.sf.ntru.blockchian.Miner;
+import net.sf.ntru.crypto.KyberNew;
+import net.sf.ntru.crypto.NodeKyber.NodeKyber;
+import net.sf.ntru.crypto.provider.KyberEncrypted;
+import net.sf.ntru.crypto.provider.KyberKeyAgreement;
 import net.sf.ntru.encrypt.EncryptionKeyPair;
 import org.json.simple.JSONObject;
 
+import java.security.InvalidKeyException;
 import java.security.KeyPair;
 
 
 public class BlockChainApplication {
 
+    public BlockChainApplication() throws InvalidKeyException {
+    }
+
     public static void main(String[] args) throws Exception {
 
 
-
         AesExample aesExample = new AesExample();
-
-
         PqcJavaSikeKem pqcJavaSikeKem = new PqcJavaSikeKem();
+        KyberNew kyberNew = new KyberNew();
 
-
-
-        BlockChain blockChain = new BlockChain();
-       //----------------------------------------------------------------
+        //----------------------------------------------------------------
         // we will instantiate the Miner class to fetch the minor object.
+        BlockChain blockChain = new BlockChain();
         Miner miner = new Miner();
         Node node1 = new Node();
         Node node2 = new Node();
@@ -55,8 +59,8 @@ public class BlockChainApplication {
         miner.mine(block3, blockChain);
         byte[] encrypt_temp3 = (byte[]) transaction1.get(2);
         node3.decrypt(encrypt_temp3,transaction_temp1);
-        System.out.println("\n"+ "BLOCKCHAIN:\n"+blockChain);
-        System.out.println("Miner's reward: " + miner.getReward());
+        System.out.println("\n"+ "NTRU BLOCKCHAIN:\n"+blockChain);
+        System.out.println("NTRU Miner's reward: " + miner.getReward());
 
         //----------------------------------------------------------------
         Miner miner_sike = new Miner();
@@ -90,8 +94,43 @@ public class BlockChainApplication {
         EncryptedMessage encrypt_s3 = (EncryptedMessage) trans3.get(2);
         nodeSike3.decrypt_sike(trans_t3.getPrivate(),encrypt_s3, (SikeParam) trans3.get(3));
 
-        System.out.println("\n"+ "BLOCKCHAIN:\n"+blockChainSike);
-        System.out.println("Miner's reward: " + miner_sike.getReward());
+        System.out.println("\n"+ "Sike BLOCKCHAIN:\n"+blockChainSike);
+        System.out.println("SiKe Miner's reward: " + miner_sike.getReward());
 
+        //----------------------------------------------------------------
+
+        BlockChain blockChainKyber = new BlockChain();
+
+        Miner minerKyber = new Miner();
+        NodeKyber nodeKyber1 = new NodeKyber();
+        NodeKyber nodeKyber2 = new NodeKyber();
+        NodeKyber nodeKyber3 = new NodeKyber();
+
+
+        JSONObject transKyber_1 = kyberNew.testKyber();
+        KeyPair transkyber1 = (KeyPair) transKyber_1.get(1);
+        Block block_k1 = new Block(1, transkyber1.toString() ,Constants_Program.GENESIS_PREV_HASH);
+        minerKyber.mine(block_k1, blockChainKyber);
+        KyberEncrypted encrypt_kyber1 = (KyberEncrypted) transKyber_1.get(2);
+       nodeKyber1.decrypt_kyber(encrypt_kyber1, (KyberKeyAgreement) transKyber_1.get(3));
+
+
+        JSONObject transKyber_2 = kyberNew.testKyber();
+        KeyPair transkyber2 = (KeyPair) transKyber_2.get(1);
+        Block block_k2 = new Block(2, transkyber2.toString() ,blockChainKyber.getBlockChain().get(blockChainKyber.size()-1).getHash());
+        minerKyber.mine(block_k2, blockChainKyber);
+        KyberEncrypted encrypt_kyber2 = (KyberEncrypted) transKyber_2.get(2);
+        nodeKyber2.decrypt_kyber(encrypt_kyber2, (KyberKeyAgreement) transKyber_2.get(3));
+
+
+        JSONObject transKyber_3 = kyberNew.testKyber();
+        KeyPair transkyber3 = (KeyPair) transKyber_3.get(1);
+        Block block_k3 = new Block(3, transkyber3.toString() ,blockChainKyber.getBlockChain().get(blockChainKyber.size()-1).getHash());
+        minerKyber.mine(block_k3, blockChainKyber);
+        KyberEncrypted encrypt_kyber3 = (KyberEncrypted) transKyber_3.get(2);
+        nodeKyber3.decrypt_kyber(encrypt_kyber3, (KyberKeyAgreement) transKyber_3.get(3));
+
+        System.out.println("\n"+ "Kyber BLOCKCHAIN:\n"+blockChainKyber);
+        System.out.println("Kyber Miner's reward: " + minerKyber.getReward());
     }
 }
