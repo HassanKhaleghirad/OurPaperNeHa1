@@ -12,6 +12,7 @@
         <module>blockchain</module>
         <module>ntru</module>
         <module>sike</module>
+        <module>zookeeper</module>
     </modules>
 
     <properties>

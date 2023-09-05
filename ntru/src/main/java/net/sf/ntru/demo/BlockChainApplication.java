@@ -39,6 +39,7 @@ public class BlockChainApplication {
         Node node2 = new Node();
         Node node3 = new Node();
 
+        long start1 = System.currentTimeMillis();
         JSONObject transaction1= aesExample.run("node1");
         EncryptionKeyPair transaction_temp1 = (EncryptionKeyPair) transaction1.get(1);
         Block block1 = new Block(1, transaction_temp1.toString() ,Constants_Program.GENESIS_PREV_HASH);
@@ -59,6 +60,10 @@ public class BlockChainApplication {
         miner.mine(block3, blockChain);
         byte[] encrypt_temp3 = (byte[]) transaction1.get(2);
         node3.decrypt(encrypt_temp3,transaction_temp1);
+
+        long end1 = System.currentTimeMillis();
+        System.out.println("\n" +"Elapsed Time in NTRU: "+ (end1-start1)+ "\n");
+
         System.out.println("\n"+ "NTRU BLOCKCHAIN:\n"+blockChain);
         System.out.println("NTRU Miner's reward: " + miner.getReward());
 
@@ -69,6 +74,7 @@ public class BlockChainApplication {
         NodeSike nodeSike3 = new NodeSike();
 
 
+        long start2 = System.currentTimeMillis();
 
         BlockChain blockChainSike = new BlockChain();
         JSONObject trans1= pqcJavaSikeKem.testSikeEncryption("node112345678911");
@@ -94,6 +100,9 @@ public class BlockChainApplication {
         EncryptedMessage encrypt_s3 = (EncryptedMessage) trans3.get(2);
         nodeSike3.decrypt_sike(trans_t3.getPrivate(),encrypt_s3, (SikeParam) trans3.get(3));
 
+
+        long end2 = System.currentTimeMillis();
+        System.out.println("\n" +"Elapsed Time in SIKE: "+ (end2-start2)+ "\n");
         System.out.println("\n"+ "Sike BLOCKCHAIN:\n"+blockChainSike);
         System.out.println("SiKe Miner's reward: " + miner_sike.getReward());
 
@@ -106,7 +115,7 @@ public class BlockChainApplication {
         NodeKyber nodeKyber2 = new NodeKyber();
         NodeKyber nodeKyber3 = new NodeKyber();
 
-
+        long  start3= System.currentTimeMillis();
         JSONObject transKyber_1 = kyberNew.testKyber();
         KeyPair transkyber1 = (KeyPair) transKyber_1.get(1);
         Block block_k1 = new Block(1, transkyber1.toString() ,Constants_Program.GENESIS_PREV_HASH);
@@ -129,6 +138,10 @@ public class BlockChainApplication {
         minerKyber.mine(block_k3, blockChainKyber);
         KyberEncrypted encrypt_kyber3 = (KyberEncrypted) transKyber_3.get(2);
         nodeKyber3.decrypt_kyber(encrypt_kyber3, (KyberKeyAgreement) transKyber_3.get(3));
+
+        long end3 = System.currentTimeMillis();
+        System.out.println("\n" +"Elapsed Time in Kyper: "+ (end3-start3)+ "\n");
+
 
         System.out.println("\n"+ "Kyber BLOCKCHAIN:\n"+blockChainKyber);
         System.out.println("Kyber Miner's reward: " + minerKyber.getReward());
