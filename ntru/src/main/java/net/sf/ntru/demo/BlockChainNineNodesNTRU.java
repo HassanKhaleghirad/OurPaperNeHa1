@@ -1,15 +1,13 @@
 package net.sf.ntru.demo;
 
-import net.sf.ntru.SikeKem.PqcJavaSikeKem;
 import net.sf.ntru.blockchian.Block;
 import net.sf.ntru.blockchian.BlockChain;
 import net.sf.ntru.blockchian.Constants_Program;
 import net.sf.ntru.blockchian.Miner;
-import net.sf.ntru.crypto.KyberNew;
 import net.sf.ntru.encrypt.EncryptionKeyPair;
 import org.json.simple.JSONObject;
 
-public class BlockChainNineNodes {
+public class BlockChainNineNodesNTRU {
     public static void main(String[] args) throws Exception {
 
 
