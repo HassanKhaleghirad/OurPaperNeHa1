@@ -69,21 +69,21 @@ public class AesExample {
         NtruEncrypt ntru = new NtruEncrypt(ntruParams);
         EncryptionKeyPair ntruKeyPair = ntru.generateKeyPair();
 
-        System.out.println("Unencrypted text = " + plainText.substring(0, 50) + "...");
-        System.out.println("Plain txt length = " + plainText.length());
-        System.out.println("Max. NTRU length = " + ntruParams.getMaxMessageLength());
+//        System.out.println("Unencrypted text = " + plainText.substring(0, 50) + "...");
+//        System.out.println("Plain txt length = " + plainText.length());
+//        System.out.println("Max. NTRU length = " + ntruParams.getMaxMessageLength());
 
         // encrypt the text
         byte[] encrypted = encrypt(plainText.getBytes(), ntruKeyPair.getPublic(), aesMode, aesLength, ntruParams);
 
-        System.out.println("Encrypted length = " + encrypted.length +
-                " (NTRU=" + ntruParams.getOutputLength() + ", AES=" + (encrypted.length - ntruParams.getOutputLength()) + ")");
+//        System.out.println("Encrypted length = " + encrypted.length +
+//                " (NTRU=" + ntruParams.getOutputLength() + ", AES=" + (encrypted.length - ntruParams.getOutputLength()) + ")");
 
         // decrypt
         String decrypted = new String(decrypt(encrypted, ntruKeyPair, aesMode, aesLength, ntruParams));
 
-        System.out.println("Decrypted text   = " + decrypted.substring(0, 50) + "...");
-        System.out.println("Decrypted length = " + decrypted.length());
+//        System.out.println("Decrypted text   = " + decrypted.substring(0, 50) + "...");
+//        System.out.println("Decrypted length = " + decrypted.length());
 
         JSONObject obj=new JSONObject();
         obj.put(1,ntruKeyPair);

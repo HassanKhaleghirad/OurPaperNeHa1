@@ -11,8 +11,8 @@ public class Miner {
             block.incrementNonce();
         }
 
-        System.out.println(block+" has just mined...");
-        System.out.println("Hash is: "+block.getHash());
+//        System.out.println(block+" has just mined...");
+//        System.out.println("Hash is: "+block.getHash());
         //appending the block to the blockchain
         blockChain.addBlock(block);
         //calculating the reward

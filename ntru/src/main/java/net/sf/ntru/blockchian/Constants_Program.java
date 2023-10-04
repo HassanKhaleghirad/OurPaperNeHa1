@@ -6,7 +6,7 @@ public class Constants_Program {
     }
     //difficult in mining is defined by the leading zeros
 //here, the difficulty is set to 1 so, it will have 1 zero
-    public static final int DIFFICULTY = 1;
+    public static final int DIFFICULTY =3;
 
     public static final double MINER_REWARD = 10;
 

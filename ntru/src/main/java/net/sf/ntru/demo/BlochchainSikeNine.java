@@ -17,49 +17,101 @@ public class BlochchainSikeNine {
     public static void main(String[] args) throws Exception {
 
 
+
         PqcJavaSikeKem pqcJavaSikeKem = new PqcJavaSikeKem();
 
         Miner miner_sike = new Miner();
         NodeSike nodeSike1 = new NodeSike();
-        NodeSike nodeSike2 = new NodeSike();
-        NodeSike nodeSike3 = new NodeSike();
-        NodeSike nodeSike4 = new NodeSike();
-        NodeSike nodeSike5 = new NodeSike();
-        NodeSike nodeSike6 = new NodeSike();
-        NodeSike nodeSike7 = new NodeSike();
-        NodeSike nodeSike8 = new NodeSike();
-        NodeSike nodeSike9 = new NodeSike();
-        NodeSike nodeSike10 = new NodeSike();
-        NodeSike nodeSike11 = new NodeSike();
-        NodeSike nodeSike12 = new NodeSike();
-        NodeSike nodeSike13 = new NodeSike();
-        NodeSike nodeSike14 = new NodeSike();
-        NodeSike nodeSike15 = new NodeSike();
-        NodeSike nodeSike16 = new NodeSike();
-        NodeSike nodeSike17 = new NodeSike();
-        NodeSike nodeSike18 = new NodeSike();
-        NodeSike nodeSike19 = new NodeSike();
+//        NodeSike nodeSike2 = new NodeSike();
+//        NodeSike nodeSike3 = new NodeSike();
+//        NodeSike nodeSike4 = new NodeSike();
+//        NodeSike nodeSike5 = new NodeSike();
+//        NodeSike nodeSike6 = new NodeSike();
+//        NodeSike nodeSike7 = new NodeSike();
+//        NodeSike nodeSike8 = new NodeSike();
+//        NodeSike nodeSike9 = new NodeSike();
+//        NodeSike nodeSike10 = new NodeSike();
+//        NodeSike nodeSike11 = new NodeSike();
+//        NodeSike nodeSike12 = new NodeSike();
+//        NodeSike nodeSike13 = new NodeSike();
+//        NodeSike nodeSike14 = new NodeSike();
+//        NodeSike nodeSike15 = new NodeSike();
+//        NodeSike nodeSike16 = new NodeSike();
+//        NodeSike nodeSike17 = new NodeSike();
+//        NodeSike nodeSike18 = new NodeSike();
+//        NodeSike nodeSike19 = new NodeSike();
 
 
-        long start1 = System.currentTimeMillis();
+
 
         BlockChain blockChainSike = new BlockChain();
+
+//
+        long start1 = System.currentTimeMillis();
         JSONObject trans1 = pqcJavaSikeKem.testSikeEncryption("node112345678911");
         KeyPair trans_t1 = (KeyPair) trans1.get(1);
-        Block block_s1 = new Block(1, trans_t1.toString(), Constants_Program.GENESIS_PREV_HASH);
+        Block block_s1 = new Block(1, "1", Constants_Program.GENESIS_PREV_HASH);
         miner_sike.mine(block_s1, blockChainSike);
-        EncryptedMessage encrypt_s1 = (EncryptedMessage) trans1.get(2);
-        nodeSike1.decrypt_sike(trans_t1.getPrivate(), encrypt_s1, (SikeParam) trans1.get(3));
+//        EncryptedMessage encrypt_s1 = (EncryptedMessage) trans1.get(2);
+//        nodeSike1.decrypt_sike(trans_t1.getPrivate(), encrypt_s1, (SikeParam) trans1.get(3));
 
 
-        JSONObject trans2 = pqcJavaSikeKem.testSikeEncryption("node312345678922");
-        KeyPair trans_t2 = (KeyPair) trans2.get(1);
-        Block block_s2 = new Block(2, trans_t2.toString(), blockChainSike.getBlockChain().get(blockChainSike.size() - 1).getHash());
-        miner_sike.mine(block_s2, blockChainSike);
-        EncryptedMessage encrypt_s2 = (EncryptedMessage) trans2.get(2);
-        nodeSike2.decrypt_sike(trans_t1.getPrivate(), encrypt_s2, (SikeParam) trans2.get(3));
 
 
+
+        NodeSike nodeSike = null;
+        for (int i=1 ; i<1333;i++) {
+            nodeSike = new NodeSike();
+            if (i < 10) {
+                JSONObject trans2 = pqcJavaSikeKem.testSikeEncryption("node31234567891" + i);
+                KeyPair trans_t2 = (KeyPair) trans2.get(1);
+                Block block_s2 = new Block(i + 1, "1", blockChainSike.getBlockChain().get(blockChainSike.size() - 1).getHash());
+                miner_sike.mine(block_s2, blockChainSike);
+//                EncryptedMessage encrypt_s2 = (EncryptedMessage) trans2.get(2);
+//                nodeSike.decrypt_sike(trans_t1.getPrivate(), encrypt_s2, (SikeParam) trans2.get(3));
+
+
+            }
+            if (i >= 10 && i < 100) {
+                JSONObject trans2 = pqcJavaSikeKem.testSikeEncryption("node3123456789" + i);
+                KeyPair trans_t2 = (KeyPair) trans2.get(1);
+                Block block_s2 = new Block(i + 1, "1", blockChainSike.getBlockChain().get(blockChainSike.size() - 1).getHash());
+                miner_sike.mine(block_s2, blockChainSike);
+//                EncryptedMessage encrypt_s2 = (EncryptedMessage) trans2.get(2);
+//                nodeSike.decrypt_sike(trans_t1.getPrivate(), encrypt_s2, (SikeParam) trans2.get(3));
+            }
+
+            if(i>=100 && i<1000) {
+                JSONObject trans2 = pqcJavaSikeKem.testSikeEncryption("node312345678" + i);
+                KeyPair trans_t2 = (KeyPair) trans2.get(1);
+                Block block_s2 = new Block(i+1, trans_t2.toString(), blockChainSike.getBlockChain().get(blockChainSike.size() - 1).getHash());
+                miner_sike.mine(block_s2, blockChainSike);
+//                EncryptedMessage encrypt_s2 = (EncryptedMessage) trans2.get(2);
+//                nodeSike.decrypt_sike(trans_t1.getPrivate(), encrypt_s2, (SikeParam) trans2.get(3));
+            }
+            if(i>=1000 ) {
+                JSONObject trans2 = pqcJavaSikeKem.testSikeEncryption("node31234567" + i);
+                KeyPair trans_t2 = (KeyPair) trans2.get(1);
+                Block block_s2 = new Block(i+1, trans_t2.toString(), blockChainSike.getBlockChain().get(blockChainSike.size() - 1).getHash());
+                miner_sike.mine(block_s2, blockChainSike);
+//                EncryptedMessage encrypt_s2 = (EncryptedMessage) trans2.get(2);
+//                nodeSike.decrypt_sike(trans_t1.getPrivate(), encrypt_s2, (SikeParam) trans2.get(3));
+            }
+//            if(i>=2000) {
+//                JSONObject trans2 = pqcJavaSikeKem.testSikeEncryption("node3123456" + i);
+//                KeyPair trans_t2 = (KeyPair) trans2.get(1);
+//                Block block_s2 = new Block(i+1, trans_t2.toString(), blockChainSike.getBlockChain().get(blockChainSike.size() - 1).getHash());
+//                miner_sike.mine(block_s2, blockChainSike);
+//                EncryptedMessage encrypt_s2 = (EncryptedMessage) trans2.get(2);
+//                nodeSike.decrypt_sike(trans_t1.getPrivate(), encrypt_s2, (SikeParam) trans2.get(3));
+//            }
+
+
+        }
+        long end2 = System.currentTimeMillis();
+        System.out.println("\n" + "Elapsed Time for Nine SIKE: " + (end2 - start1) + "\n");
+
+/*
         JSONObject trans3 = pqcJavaSikeKem.testSikeEncryption("node312345678933");
         KeyPair trans_t3 = (KeyPair) trans3.get(1);
         Block block_s3 = new Block(3, trans_t3.toString(), blockChainSike.getBlockChain().get(blockChainSike.size() - 1).getHash());
@@ -121,6 +173,8 @@ public class BlochchainSikeNine {
 
 
         long end1 = System.currentTimeMillis();
+        double time1 = timer1.elapsedTime();
+        System.out.println("\n" + "Second " + time1 + "\n");
         System.out.println("\n" + "Elapsed Time for Nine SIKE: " + (end1 - start1) + "\n");
 
 
@@ -197,9 +251,10 @@ public class BlochchainSikeNine {
         miner_sike.mine(block_s18, blockChainSike);
         EncryptedMessage encrypt_s18 = (EncryptedMessage) trans18.get(2);
         nodeSike18.decrypt_sike(trans_t18.getPrivate(), encrypt_s18, (SikeParam) trans18.get(3));
-
+        double time2 = timer1.elapsedTime();
+        System.out.println("\n" + "Second " + time2 + "\n");
         long end2 = System.currentTimeMillis();
-        System.out.println("\n" + "Elapsed Time for Nine SIKE: " + (end2 - start1) + "\n");
+        System.out.println("\n" + "18 node Elapsed Time for Nine SIKE: " + (end2 - start1) + "\n");
 
 
 
@@ -210,7 +265,7 @@ public class BlochchainSikeNine {
         EncryptedMessage encrypt_s19 = (EncryptedMessage) trans19.get(2);
         nodeSike19.decrypt_sike(trans_t19.getPrivate(), encrypt_s19, (SikeParam) trans19.get(3));
 
-
+*/
 //        System.out.println("\n"+ "Sike BLOCKCHAIN:\n"+blockChainSike);
 //        System.out.println("SiKe Miner's reward: " + miner_sike.getReward());
 
