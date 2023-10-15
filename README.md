@@ -11,7 +11,9 @@ mvn install:install-file \
    
         mvn install:install-file -Dfile=</home/hassan/saeed/keccakj-1.1.0.jar> -DgroupId=<com.github.aelstad> -DartifactId=<keccakj> -Dversion=<1.1.0> -Dpackaging=<jar> -DgeneratePom=true
 
+#ok
 
+ mvn install:install-file -Dfile=/home/hassan/saeed/keccakj-1.1.0.jar -DgroupId=com.github.aelstad -DartifactId=keccakj -Dversion=1.1.0 -Dpackaging=jar -DgeneratePom=true
 
 
 
