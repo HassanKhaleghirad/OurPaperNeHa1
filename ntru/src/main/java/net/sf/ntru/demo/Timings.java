@@ -26,6 +26,7 @@
 
 package net.sf.ntru.demo;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 import net.sf.ntru.encrypt.EncryptionKeyPair;
@@ -200,7 +201,10 @@ public class Timings {
         return t2 - t1;
     }
     
-    public static void main(String[] args) {
-        new Timings().run();
+    public static void main(String[] args) throws IOException {
+
+        ProcessBuilder b= new ProcessBuilder("/bin/sh", "-c","top -bn 2 -d 0.01 | grep -i 'cpu' | tail -n 1 | gawk '{print $2+$4+$6}'");
+        b.start();
+       // new Timings().run();
     }
 }
